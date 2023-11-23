@@ -12,4 +12,11 @@ migrateup:
 
 migratedown:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/k_bank?sslmode=disable" -verbose down
-.PHONY: postgres createdb dropdb migrateup migratedown
+
+sqlc:
+	sqlc generate
+
+export_sqlc_auth:
+	export SQLC_AUTH_TOKEN=sqlc_01HFYNJJWXZAT78VC3NHP01AXP
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc export_sqlc_auth
